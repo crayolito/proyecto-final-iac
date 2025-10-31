@@ -655,3 +655,13 @@ ssh -i ~/.ssh/id_rsa ec2-user@<EC2_PUBLIC_IP>
 # http://<EC2_PUBLIC_IP>:8080/Hola
 
 # Vamos a ejecutar los el Scprit que tenemos para Windows para la validacion de sintaxis
+
+# docker logs demo-microservice-lab
+
+# Formatea el código Terraform (terraform fmt)
+
+# Valida la sintaxis de Terraform (terraform validate)
+
+# Ejecuta TFLint para detectar errores de estilo y mejores prácticas (tflint .).
+
+# Corre Checkov para un escaneo de seguridad (checkov -d . --framework terraform).
