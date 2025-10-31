@@ -599,7 +599,8 @@ terraform plan
 
 # Con la llave privada, el "provisioner" se conecta por SSH a la EC2 e instala nginx automáticamente.
 
-terraform apply -var="public_ssh_key=$(type %USERPROFILE%\.ssh\id_rsa.pub)" -var="private_key_path=%USERPROFILE%\.ssh\id_rsa"
+terraform apply `  -var "public_ssh_key=$(Get-Content -Raw $env:USERPROFILE\.ssh\id_rsa.pub)"`
+-var "private_key_path=$env:USERPROFILE\.ssh\id_rsa"
 
 # Despues ir a Configuracion GitHub del repositorio (Settings) -> (Secrets and variables) -> (Actions) -> (Secrets)
 
