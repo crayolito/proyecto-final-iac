@@ -4,26 +4,29 @@ locals {
     Tipo   = "iam-role-ec2"
   })
 }
+
 data "aws_iam_policy_document" "asumir_role" {
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
     principals {
-      type = "Service"
+      type        = "Service"
       identifiers = ["ec2.amazonaws.com"]
     }
   }
 }
 
 resource "aws_iam_role" "rol_ec2" {
-  name = "rol-ec2-${var.nombre_proyecto}"
+  name               = "rol-ec2-${var.nombre_proyecto}"
   assume_role_policy = data.aws_iam_policy_document.asumir_role.json
   tags               = local.etiquetas
 }
+
 resource "aws_iam_role_policy_attachment" "ssm_core" {
   role       = aws_iam_role.rol_ec2.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
+
 data "aws_iam_policy_document" "politica_minima" {
   statement {
     sid       = "S3ReadBucket"
@@ -51,6 +54,7 @@ resource "aws_iam_role_policy" "politica_minima" {
   role   = aws_iam_role.rol_ec2.id
   policy = data.aws_iam_policy_document.politica_minima.json
 }
+
 resource "aws_iam_instance_profile" "perfil_ec2" {
   name = "perfil-ec2-${var.nombre_proyecto}"
   role = aws_iam_role.rol_ec2.name

@@ -72,6 +72,8 @@ module "compute" {
   nombre_proyecto   = var.nombre_proyecto
   etiquetas_comunes = local.etiquetas_comunes
 
+
+
   ami_id               = data.aws_ami.al2023.id
   instance_type        = "t3.micro"
   key_name             = aws_key_pair.this.key_name

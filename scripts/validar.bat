@@ -16,7 +16,7 @@ if %errorlevel% equ 0 (
     tflint --chdir=infra
     if %errorlevel% neq 0 goto error
 ) else (
-    echo ⚠️ TFLint no esta instalado. Omitiendo esta validacion.
+    echo TFLint no esta instalado. Omitiendo esta validacion.
 )
 
 echo.
@@ -26,16 +26,16 @@ if %errorlevel% equ 0 (
     checkov -d infra --framework terraform
     if %errorlevel% neq 0 goto error
 ) else (
-    echo ⚠️ Checkov no esta instalado. Omitiendo esta validacion.
+    echo Checkov no esta instalado. Omitiendo esta validacion.
 )
 
 echo.
-echo ✅ TODAS LAS VALIDACIONES DISPONIBLES PASARON CORRECTAMENTE
+echo TODAS LAS VALIDACIONES DISPONIBLES PASARON CORRECTAMENTE
 goto end
 
 :error
 echo.
-echo ❌ ERROR: Corregir problemas antes de continuar
+echo ERROR: Corregir problemas antes de continuar
 pause
 exit /b 1
 
